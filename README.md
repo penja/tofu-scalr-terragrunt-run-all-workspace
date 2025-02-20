@@ -9,18 +9,7 @@ It supports flexible remote state management by either integrating with an exist
  - Automated Backend Provisioning: Set create_s3_backend = true to automatically create an S3 bucket, DynamoDB table, and IAM role using the tofu-aws-scalr-managed-s3-backend module.
 
 ## 🛠 Prerequisites
- - VCS Provider in Scalr: You must create a VCS provider in Scalr and provide its ID via:
-```
-variable "vcs_repo_config" {
-  type = object({
-    vcs_provider_id  = string
-    identifier       = string
-    branch           = string
-    trigger_prefixes = list(string)
-  })
-  description = "Scalr VCS provider ID and repository details for Terragrunt code."
-}
-```
+ - VCS Provider in Scalr: You must create a VCS provider in Scalr and provide its ID via `vcs_repo_config` variable.
  - Terragrunt Integration: Scalr does not currently have a native Terragrunt integration resource in its provider. You must manually enable Terragrunt integration via the Scalr UI or API.
  - AWS credentials configured
  - Scalr credentials configured
