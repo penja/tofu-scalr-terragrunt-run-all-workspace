@@ -39,6 +39,20 @@ enable_s3_encryption = false
 enable_dynamodb_pitr = false
 ```
 
+## Cleanup: Deleting an S3 Bucket with OpenTofu
+If the bucket contains objects, OpenTofu cannot delete it. To remove all object versions before deleting the bucket, run the following:
+
+```sh
+bucket_name=tf-state-u8pp8z  # Replace with your bucket name
+
+aws s3api delete-objects \
+    --bucket ${bucket_name} \
+    --delete "$(aws s3api list-object-versions \
+    --bucket "${bucket_name}" \
+    --output=json \
+    --query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')"
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
