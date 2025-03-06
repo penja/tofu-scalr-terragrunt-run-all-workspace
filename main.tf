@@ -9,7 +9,7 @@ locals {
 
 module "s3_backend" {
   count  = var.create_s3_backend ? 1 : 0
-  source = "github.com/DayS1eeper/tofu-aws-scalr-managed-s3-backend"
+  source = "github.com/penja/tofu-aws-scalr-managed-s3-backend"
 
   bucket_name            = var.bucket_name
   dynamodb_table_name    = var.dynamodb_table_name
